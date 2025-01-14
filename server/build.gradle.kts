@@ -23,6 +23,10 @@ dependencies {
 
     implementation(libs.coroutines.jvm)
 
+    implementation(libs.kotlinx.datetime)
+
+    implementation(project(":database"))
+
     testImplementation(libs.ktor.client.content.negotiation)
     testImplementation(libs.koin.test)
     testImplementation(libs.kotlin.test)

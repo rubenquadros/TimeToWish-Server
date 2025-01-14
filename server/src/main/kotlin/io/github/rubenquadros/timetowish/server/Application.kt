@@ -1,5 +1,6 @@
 package io.github.rubenquadros.timetowish.server
 
+import io.github.rubenquadros.timetowish.server.core.configureHeaderValidation
 import io.ktor.server.application.Application
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
@@ -13,4 +14,7 @@ private fun Application.module() {
     configureSerialization()
     configureResources()
     configureRouting()
+    configureHeaderValidation()
+    configureRequestValidation()
+    configureStatusPages()
 }

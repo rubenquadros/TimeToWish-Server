@@ -2,10 +2,12 @@
 kotlin = "2.1.0"
 ktor = "3.0.3"
 logback = "1.5.6"
-koin = "4.1.0-Beta1"
+koin = "4.1.0-Beta4"
 koin-annotation = "2.0.0-Beta3"
 ksp = "2.0.20-1.0.25"
 coroutines = "1.10.1"
+firebase = "9.4.2"
+kotlinx-datetime = "0.6.1"
 
 [libraries]
 # ktor
@@ -17,10 +19,12 @@ ktor-logback = { module = "ch.qos.logback:logback-classic", version.ref = "logba
 ktor-resources = { module = "io.ktor:ktor-server-resources", version.ref = "ktor" }
 ktor-test = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-request-validation = { module = "io.ktor:ktor-server-request-validation", version.ref = "ktor" }
+ktor-status-pages = { module = "io.ktor:ktor-server-status-pages", version.ref = "ktor" }
 
 # koin
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
-koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
+koin-ktor = { module = "io.insert-koin:koin-ktor3", version.ref = "koin" }
 koin-logger = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
 koin-annotation = { module = "io.insert-koin:koin-annotations", version.ref = "koin-annotation" }
 koin-ksp = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-annotation" }
@@ -30,10 +34,16 @@ koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 coroutines-jvm = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 
+# firebase
+firebase-admin = { module = "com.google.firebase:firebase-admin", version.ref = "firebase" }
+
+#date-time
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 
 [bundles]
-ktor = ["ktor-content-negotiation", "ktor-core-jvm", "ktor-serialization", "ktor-netty", "ktor-logback", "ktor-resources"]
+ktor = ["ktor-content-negotiation", "ktor-core-jvm", "ktor-serialization", "ktor-netty", "ktor-logback", "ktor-resources", "ktor-request-validation", "ktor-status-pages"]
 koin = ["koin-core", "koin-ktor", "koin-logger"]
 
 [plugins]

@@ -1,5 +1,6 @@
 package io.github.rubenquadros.timetowish.server
 
+import io.github.rubenquadros.timetowish.db.di.DatabaseModule
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import org.koin.core.annotation.ComponentScan
@@ -15,6 +16,6 @@ internal fun Application.configureDi() {
     }
 }
 
-@Module
+@Module(includes = [DatabaseModule::class])
 @ComponentScan("io.github.rubenquadros.timetowish.server")
 class ServerModule
