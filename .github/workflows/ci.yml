@@ -1,0 +1,30 @@
+# TimeToWish server pipeline
+
+name: TimeToWish-Server pipeline
+
+# Controls when the workflow is triggered
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Build the project and run tests
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+      - name: Setup gradle
+        uses: gradle/actions/setup-gradle@v3
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Build
+        run: ./gradlew server:build
+        continue-on-error: false
+      - name: Run tests
+        run: ./gradlew server:test

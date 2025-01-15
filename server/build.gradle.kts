@@ -56,3 +56,7 @@ tasks.withType<ShadowJar> {
 configurations {
     testImplementation.get().exclude("org.jetbrains.kotlin", "kotlin-test-junit")
 }
+
+tasks.withType<ShadowJar> {
+    mergeServiceFiles()
+}
