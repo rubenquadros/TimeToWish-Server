@@ -12,21 +12,27 @@ internal fun Route.eventsRoute() {
 
     val eventsApi by inject<EventsApi>()
 
-    get<Events.All> {
-        val response = eventsApi.getAllEvents(userId = call.getUserId())
-        call.respond(status = response.status, message = response.data)
+    get<Events> { events ->
+
+        val date = events.date
+
+        if (date == null) {
+            //get all events
+            val response = eventsApi.getAllEvents(userId = call.getUserId())
+
+            call.respond(status = response.status, message = response.data)
+        } else {
+            //get events for a specific date
+            val response = eventsApi.getEvents(
+                userId = call.getUserId(),
+                date = date
+            )
+
+            call.respond(status = response.status, message = response.data)
+        }
     }
 
-    get<Events.Day> { day ->
-        val response = eventsApi.getEvents(
-            userId = call.getUserId(),
-            date = day.date
-        )
-
-        call.respond(status = response.status, message = response.data)
-    }
-
-    post<Events.Add> {
+    post<Events> {
         val body = call.receive<ServerEvent>()
         val response = eventsApi.addEvent(body)
 

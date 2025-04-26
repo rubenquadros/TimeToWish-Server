@@ -18,7 +18,7 @@ fun getDateNow(): String {
     return getDateTimeToStringFormatter().format(today)
 }
 
-fun getDateTimeToStringFormatter(): DateTimeFormat<LocalDateTime> {
+private fun getDateTimeToStringFormatter(): DateTimeFormat<LocalDateTime> {
     return LocalDateTime.Format {
         dayOfMonth()
         char('-')

@@ -1,8 +1,8 @@
 package io.github.rubenquadros.timetowish.server.core
 
-import io.github.rubenquadros.timetowish.server.utils.Constants.DEVICE_ID_HEADER
+import io.github.rubenquadros.timetowish.server.utils.Constants.PLATFORM_HEADER
 import io.github.rubenquadros.timetowish.server.utils.Constants.USER_ID_HEADER
-import io.ktor.http.HttpStatusCode
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.util.*
 
@@ -22,13 +22,13 @@ internal class HeaderValidation() {
                 val message = StringBuilder("")
                 val headers = call.request.headers
                 val userId = headers[USER_ID_HEADER]
-                val deviceId = headers[DEVICE_ID_HEADER]
+                val platform = headers[PLATFORM_HEADER]
                 if (userId.isNullOrEmpty()) {
                     message.append("Missing required header: $USER_ID_HEADER; ")
                 }
 
-                if (deviceId.isNullOrEmpty()) {
-                    message.append("Missing required header: $DEVICE_ID_HEADER; ")
+                if (platform.isNullOrEmpty()) {
+                    message.append("Missing required header: $PLATFORM_HEADER; ")
                 }
 
                 if (message.toString().isNotEmpty()) {
