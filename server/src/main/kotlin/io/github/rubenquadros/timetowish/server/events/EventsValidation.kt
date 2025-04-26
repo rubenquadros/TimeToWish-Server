@@ -5,7 +5,7 @@ import io.ktor.server.plugins.requestvalidation.RequestValidationConfig
 import io.ktor.server.plugins.requestvalidation.ValidationResult
 
 internal fun RequestValidationConfig.eventsValidation() {
-    validate<DbEvent> { body -> //Validate /events/add
+    validate<DbEvent> { body -> //Validate POST /events
         val message = StringBuilder("")
         if (body.id.isEmpty()) {
             message.append("id is required; ")

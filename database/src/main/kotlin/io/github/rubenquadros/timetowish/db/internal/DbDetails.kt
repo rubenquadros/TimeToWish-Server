@@ -1,7 +1,7 @@
 package io.github.rubenquadros.timetowish.db.internal
 
-import java.io.FileInputStream
-import java.util.Properties
+import java.io.File
+import java.util.*
 
 internal data class DbDetails(
     val url: String = System.getenv("DATABASE_URL"),
@@ -9,18 +9,17 @@ internal data class DbDetails(
 )
 
 internal fun getDbDetails(): DbDetails {
-    var inputStream: FileInputStream? = null
-    return try {
-        inputStream = FileInputStream("/Users/rquadros/Documents/Ruben/git_tree/TimeToWish-Server/local.properties")
-        val properties = Properties()
-        properties.load(inputStream)
-        val url = properties.getProperty("dbUrl")
-        val adminPath = properties.getProperty("adminAccountPath")
-        DbDetails(url = url, adminAccessPath = adminPath)
-    } catch (_: Exception) {
-        DbDetails()
-    } finally {
-        inputStream?.close()
-        inputStream = null
-    }
+    return runCatching {
+        val properties = Properties().apply {
+            File("/Users/rquadros/Documents/Ruben/git_tree/TimeToWish-Server/local.properties")
+                .inputStream()
+                .use { load(it) }
+        }
+
+        DbDetails(
+            url = properties.getProperty("dbUrl"),
+            adminAccessPath = properties.getProperty("adminAccountPath")
+        )
+
+    }.getOrDefault(DbDetails())
 }
