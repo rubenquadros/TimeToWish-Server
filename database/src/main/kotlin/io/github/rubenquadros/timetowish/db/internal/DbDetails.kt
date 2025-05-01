@@ -4,9 +4,16 @@ import java.io.File
 import java.util.*
 
 internal data class DbDetails(
-    val url: String = System.getenv("DATABASE_URL"),
-    val adminAccessPath: String = "etc/secrets/admin.json"
-)
+    val url: String,
+    val adminAccessPath: String
+) {
+    companion object {
+        fun default() = DbDetails(
+            url = System.getenv("DATABASE_URL"),
+            adminAccessPath = "etc/secrets/admin.json"
+        )
+    }
+}
 
 internal fun getDbDetails(): DbDetails {
     return runCatching {
@@ -21,5 +28,8 @@ internal fun getDbDetails(): DbDetails {
             adminAccessPath = properties.getProperty("adminAccountPath")
         )
 
-    }.getOrDefault(DbDetails())
+    }.getOrElse {
+        DbDetails.default()
+    }
 }
+

@@ -10,7 +10,7 @@ internal fun Route.loginRoute() {
     val loginApi by inject<LoginApi>()
 
     get<Login> {
-        val response = loginApi.getLoginKeys()
+        val response = loginApi.getLoginKeysAndPages()
 
         call.respond(status = response.status, message = response.data)
     }

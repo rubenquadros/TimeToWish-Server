@@ -1,7 +1,8 @@
 package io.github.rubenquadros.timetowish.server.login
 
 import io.github.rubenquadros.timetowish.server.core.Response
-import io.github.rubenquadros.timetowish.server.login.model.LoginKeysResponse
+import io.github.rubenquadros.timetowish.server.login.model.LoginKeys
+import io.github.rubenquadros.timetowish.server.login.model.LoginKeysAndPagesResponse
 import io.github.rubenquadros.timetowish.server.login.model.PlatformLoginKeys
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -10,18 +11,18 @@ import java.io.File
 import java.util.Properties
 
 internal interface LoginApi {
-    suspend fun getLoginKeys(): Response
+    suspend fun getLoginKeysAndPages(): Response
 }
 
 @Single
 internal class LoginApiImpl : LoginApi {
-    override suspend fun getLoginKeys(): Response {
+    override suspend fun getLoginKeysAndPages(): Response {
         val result = getLoginKeysInternal()
 
         return Response(data = result)
     }
 
-    private suspend fun getLoginKeysInternal(): LoginKeysResponse {
+    private suspend fun getLoginKeysInternal(): LoginKeysAndPagesResponse {
         return withContext(Dispatchers.IO) {
             runCatching {
                 val properties = Properties().apply {
@@ -29,13 +30,18 @@ internal class LoginApiImpl : LoginApi {
                         .inputStream()
                         .use { load(it) }
                 }
-                LoginKeysResponse(
-                    google = PlatformLoginKeys(
-                        android = properties.getProperty("googleAndroidAuthKey"),
-                        ios = properties.getProperty("googleIosAuthKey")
+
+                LoginKeysAndPagesResponse(
+                    keys = LoginKeys(
+                        google = PlatformLoginKeys(
+                            android = properties.getProperty("googleAndroidAuthKey"),
+                            ios = properties.getProperty("googleIosAuthKey")
+                        )
                     )
                 )
-            }.getOrDefault(LoginKeysResponse())
+            }.getOrElse {
+                LoginKeysAndPagesResponse(keys = LoginKeys.default())
+            }
         }
     }
 }
