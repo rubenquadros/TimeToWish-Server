@@ -3,13 +3,13 @@ package io.github.rubenquadros.timetowish.server.login.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class LoginKeysAndPagesResponse(
+internal data class LoginKeysAndPagesResponse(
     val keys: LoginKeys,
     val pages: LoginPages = LoginPages()
 )
 
 @Serializable
-data class LoginKeys(
+internal data class LoginKeys(
     val google: PlatformLoginKeys
 ) {
     companion object {
@@ -20,7 +20,7 @@ data class LoginKeys(
 }
 
 @Serializable
-data class PlatformLoginKeys(
+internal data class PlatformLoginKeys(
     val android: String,
     val ios: String
 ) {
@@ -33,7 +33,7 @@ data class PlatformLoginKeys(
 }
 
 @Serializable
-data class LoginPages(
+internal data class LoginPages(
     val termsLink: String = "https://rubenquadros.github.io/TimeToWish/terms.html",
     val privacyLink: String = "https://rubenquadros.github.io/TimeToWish/privacy.html"
 )

@@ -8,6 +8,7 @@ ksp = "2.0.20-1.0.25"
 coroutines = "1.10.1"
 firebase = "9.4.2"
 kotlinx-datetime = "0.6.1"
+google-client = "2.7.2"
 
 [libraries]
 # ktor
@@ -37,8 +38,11 @@ coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", ve
 # firebase
 firebase-admin = { module = "com.google.firebase:firebase-admin", version.ref = "firebase" }
 
-#date-time
+# date-time
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+
+# google auth
+google-client = { module = "com.google.api-client:google-api-client", version.ref = "google-client" }
 
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 

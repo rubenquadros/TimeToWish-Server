@@ -25,6 +25,8 @@ dependencies {
 
     implementation(libs.kotlinx.datetime)
 
+    implementation(libs.google.client)
+
     implementation(project(":database"))
 
     testImplementation(libs.ktor.client.content.negotiation)
