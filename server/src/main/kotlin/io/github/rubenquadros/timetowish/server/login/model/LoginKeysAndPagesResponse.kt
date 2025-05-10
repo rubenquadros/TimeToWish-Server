@@ -22,12 +22,14 @@ internal data class LoginKeys(
 @Serializable
 internal data class PlatformLoginKeys(
     val android: String,
-    val ios: String
+    val ios: String,
+    val server: String,
 ) {
     companion object {
         fun defaultGoogleKeys() = PlatformLoginKeys(
             android = System.getenv("GOOGLE_AUTH_ANDROID_KEY"),
-            ios = System.getenv("GOOGLE_AUTH_IOS_KEY")
+            ios = System.getenv("GOOGLE_AUTH_IOS_KEY"),
+            server = System.getenv("GOOGLE_AUTH_WEB_KEY")
         )
     }
 }

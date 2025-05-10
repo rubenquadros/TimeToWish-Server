@@ -65,7 +65,8 @@ internal class LoginServiceImpl(
                     keys = LoginKeys(
                         google = PlatformLoginKeys(
                             android = properties.getProperty("googleAndroidAuthKey"),
-                            ios = properties.getProperty("googleIosAuthKey")
+                            ios = properties.getProperty("googleIosAuthKey"),
+                            server = properties.getProperty("googleWebAuthKey")
                         )
                     )
                 )
