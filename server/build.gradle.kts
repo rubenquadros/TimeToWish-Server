@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
     implementation(libs.bundles.ktor)
+    implementation(libs.bundles.ktor.client)
 
     implementation(libs.bundles.koin)
     implementation(libs.koin.annotation)
@@ -29,7 +30,6 @@ dependencies {
 
     implementation(project(":database"))
 
-    testImplementation(libs.ktor.client.content.negotiation)
     testImplementation(libs.koin.test)
     testImplementation(libs.kotlin.test)
     testImplementation(libs.coroutines.test)
