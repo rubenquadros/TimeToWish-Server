@@ -1,4 +1,4 @@
-package io.github.rubenquadros.timetowish.server.wishes.model
+package io.github.rubenquadros.timetowish.server.ai
 
 import kotlinx.serialization.Serializable
 

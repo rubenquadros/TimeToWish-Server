@@ -1,6 +1,6 @@
 package io.github.rubenquadros.timetowish.server.wishes
 
-import io.github.rubenquadros.timetowish.server.wishes.model.Content
+import io.github.rubenquadros.timetowish.server.ai.Content
 import io.ktor.server.request.receive
 import io.ktor.server.resources.post
 import io.ktor.server.response.respond
